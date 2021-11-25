@@ -65,33 +65,33 @@ class IoTDpsTest(ScenarioTest):
         new_right = 'EnrollmentWrite'
 
         # Create access policy
-        self.cmd('az iot dps access-policy create -g {} --dps-name {} -n {} -r {}'.format(group_name, dps_name, policy_name, right), checks=[
+        self.cmd('az iot dps policy create -g {} --dps-name {} -n {} -r {}'.format(group_name, dps_name, policy_name, right), checks=[
             self.check('keyName', policy_name),
             self.check('rights', right)
         ])
 
         # List access policy
-        self.cmd('az iot dps access-policy list -g {} --dps-name {}'.format(group_name, dps_name), checks=[
+        self.cmd('az iot dps policy list -g {} --dps-name {}'.format(group_name, dps_name), checks=[
             self.check('length([*])', 2),
             self.check('[1].keyName', policy_name),
             self.check('[1].rights', right)
         ])
 
         # Get access policy
-        self.cmd('az iot dps access-policy show -g {} --dps-name {} -n {}'.format(group_name, dps_name, policy_name), checks=[
+        self.cmd('az iot dps policy show -g {} --dps-name {} -n {}'.format(group_name, dps_name, policy_name), checks=[
             self.check('keyName', policy_name),
             self.check('rights', right)
         ])
 
         # Create update policy
-        self.cmd('az iot dps access-policy update -g {} --dps-name {} -n {} -r {}'.format(group_name, dps_name, policy_name, new_right),
+        self.cmd('az iot dps policy update -g {} --dps-name {} -n {} -r {}'.format(group_name, dps_name, policy_name, new_right),
                  checks=[
                      self.check('keyName', policy_name),
                      self.check('rights', new_right)
         ])
 
         # Delete policy
-        self.cmd('az iot dps access-policy delete -g {} --dps-name {} -n {}'.format(group_name, dps_name, policy_name))
+        self.cmd('az iot dps policy delete -g {} --dps-name {} -n {}'.format(group_name, dps_name, policy_name))
 
         # Test DPS Certificate Lifecycle
         cert_name = self.create_random_name('certificate', 20)
@@ -121,10 +121,10 @@ class IoTDpsTest(ScenarioTest):
         self.cmd('az iot dps certificate list --dps-name {} -g {}'.format(dps_name, group_name),
                  checks=[
                      self.check('length(value)', 2),
-                     self.check('value[0].name', cert_name_verified),
-                     self.check('value[0].properties.isVerified', True),
-                     self.check('value[1].name', cert_name),
-                     self.check('value[1].properties.isVerified', False)])
+                     self.check('value[1].name', cert_name_verified),
+                     self.check('value[1].properties.isVerified', True),
+                     self.check('value[0].name', cert_name),
+                     self.check('value[0].properties.isVerified', False)])
 
         # Get certificate
         etag = self.cmd('az iot dps certificate show --dps-name {} -g {} --name {}'.format(dps_name, group_name, cert_name), checks=[
@@ -174,8 +174,18 @@ class IoTDpsTest(ScenarioTest):
 
         self.cmd('az iot hub policy create --hub-name {} -n {} --permissions {}'.format(hub_name, key_name, permission))
 
-        connection_string = self._show_hub_connection_string(hub_name, group_name)
+        # Create linked-hub with only hub name
+        self.cmd('az iot dps linked-hub create --dps-name {} -g {} --hub-name {}'
+                 .format(dps_name, group_name, hub_name))
+        self.cmd('az iot dps linked-hub delete --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_host_name))
 
+        # Create linked-hub with hub name, resource group, location
+        self.cmd('az iot dps linked-hub create --dps-name {} -g {} --hub-name {} --hrg {} --l {}'
+                 .format(dps_name, group_name, hub_name, group_name, group_location))
+        self.cmd('az iot dps linked-hub delete --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_host_name))
+
+        # Create linked-hub using connection string
+        connection_string = self._show_hub_connection_string(hub_name, group_name)
         self.cmd('az iot dps linked-hub create --dps-name {} -g {} --connection-string {} -l {}'
                  .format(dps_name, group_name, connection_string, group_location))
 

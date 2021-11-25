@@ -25,25 +25,25 @@ short-summary: Manage Azure IoT Hub Device Provisioning Service access policies.
 
 helps['iot dps access-policy create'] = """
 type: command
-short-summary: Create a new shared access policy in an Azure IoT Hub device provisioning service.
+short-summary: Create a new shared access policy in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Create a new shared access policy in an Azure IoT Hub device provisioning service with EnrollmentRead right
+  - name: Create a new shared access policy in an Azure IoT Hub Device Provisioning Service with EnrollmentRead right
     text: >
         az iot dps access-policy create --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy --rights EnrollmentRead
 """
 
 helps['iot dps access-policy delete'] = """
 type: command
-short-summary: Delete a shared access policies in an Azure IoT Hub device provisioning service.
+short-summary: Delete a shared access policies in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Delete shared access policy 'MyPolicy' in an Azure IoT Hub device provisioning service
+  - name: Delete shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps access-policy delete --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
 """
 
 helps['iot dps access-policy list'] = """
 type: command
-short-summary: List all shared access policies in an Azure IoT Hub device provisioning service.
+short-summary: List all shared access policies in an Azure IoT Hub Device Provisioning Service.
 examples:
   - name: List all shared access policies in MyDps
     text: >
@@ -52,20 +52,70 @@ examples:
 
 helps['iot dps access-policy show'] = """
 type: command
-short-summary: Show details of a shared access policies in an Azure IoT Hub device provisioning service.
+short-summary: Show details of a shared access policies in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Show details of shared access policy 'MyPolicy' in an Azure IoT Hub device provisioning service
+  - name: Show details of shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps access-policy show --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
 """
 
 helps['iot dps access-policy update'] = """
 type: command
-short-summary: Update a shared access policy in an Azure IoT Hub device provisioning service.
+short-summary: Update a shared access policy in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Update access policy 'MyPolicy' in an Azure IoT Hub device provisioning service with EnrollmentWrite right
+  - name: Update access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service with EnrollmentWrite right
     text: >
         az iot dps access-policy update --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy --rights EnrollmentWrite
+"""
+
+helps['iot dps policy'] = """
+type: group
+short-summary: Manage Azure IoT Hub Device Provisioning Service access policies.
+"""
+
+helps['iot dps policy create'] = """
+type: command
+short-summary: Create a new shared access policy in an Azure IoT Hub Device Provisioning Service.
+examples:
+  - name: Create a new shared access policy in an Azure IoT Hub Device Provisioning Service with EnrollmentRead right
+    text: >
+        az iot dps policy create --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy --rights EnrollmentRead
+"""
+
+helps['iot dps policy delete'] = """
+type: command
+short-summary: Delete a shared access policies in an Azure IoT Hub Device Provisioning Service.
+examples:
+  - name: Delete shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service
+    text: >
+        az iot dps policy delete --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
+"""
+
+helps['iot dps policy list'] = """
+type: command
+short-summary: List all shared access policies in an Azure IoT Hub Device Provisioning Service.
+examples:
+  - name: List all shared access policies in MyDps
+    text: >
+        az iot dps policy list --dps-name MyDps --resource-group MyResourceGroup
+"""
+
+helps['iot dps policy show'] = """
+type: command
+short-summary: Show details of a shared access policies in an Azure IoT Hub Device Provisioning Service.
+examples:
+  - name: Show details of shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service
+    text: >
+        az iot dps policy show --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
+"""
+
+helps['iot dps policy update'] = """
+type: command
+short-summary: Update a shared access policy in an Azure IoT Hub Device Provisioning Service.
+examples:
+  - name: Update access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service with EnrollmentWrite right
+    text: >
+        az iot dps policy update --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy --rights EnrollmentWrite
 """
 
 helps['iot dps certificate'] = """
@@ -77,10 +127,10 @@ helps['iot dps certificate create'] = """
 type: command
 short-summary: Create/upload an Azure IoT Hub Device Provisioning Service certificate.
 examples:
-  - name: Upload a CA certificate PEM file to an Azure IoT Hub device provisioning service.
+  - name: Upload a CA certificate PEM file to an Azure IoT Hub Device Provisioning Service.
     text: >
         az iot dps certificate create --dps-name MyDps --resource-group MyResourceGroup --name MyCertificate --path /certificates/Certificate.pem
-  - name: Upload a verified CA certificate CER file to an Azure IoT Hub device provisioning service.
+  - name: Upload a verified CA certificate CER file to an Azure IoT Hub Device Provisioning Service.
     text: >
         az iot dps certificate create --dps-name MyDps --resource-group MyResourceGroup --name MyCertificate --path /certificates/Certificate.cer --verified
 """
@@ -89,7 +139,7 @@ helps['iot dps certificate delete'] = """
 type: command
 short-summary: Delete an Azure IoT Hub Device Provisioning Service certificate.
 examples:
-  - name: Delete MyCertificate in an Azure IoT Hub device provisioning service
+  - name: Delete MyCertificate in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps certificate delete --dps-name MyDps --resource-group MyResourceGroup --name MyCertificate --etag AAAAAAAAAAA=
 """
@@ -106,7 +156,7 @@ examples:
 
 helps['iot dps certificate list'] = """
 type: command
-short-summary: List all certificates contained within an Azure IoT Hub device provisioning service
+short-summary: List all certificates contained within an Azure IoT Hub Device Provisioning Service
 examples:
   - name: List all certificates in MyDps
     text: >
@@ -117,7 +167,7 @@ helps['iot dps certificate show'] = """
 type: command
 short-summary: Show information about a particular Azure IoT Hub Device Provisioning Service certificate.
 examples:
-  - name: Show details about MyCertificate in an Azure IoT Hub device provisioning service
+  - name: Show details about MyCertificate in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps certificate show --dps-name MyDps --resource-group MyResourceGroup --name MyCertificate
   - name: Show information about a particular Azure IoT Hub Device Provisioning Service certificate. (autogenerated)
@@ -130,10 +180,10 @@ type: command
 short-summary: Update an Azure IoT Hub Device Provisioning Service certificate.
 long-summary: Upload a new certificate to replace the existing certificate with the same name.
 examples:
-  - name: Update a CA certificate in an Azure IoT Hub device provisioning service by uploading a new PEM file.
+  - name: Update a CA certificate in an Azure IoT Hub Device Provisioning Service by uploading a new PEM file.
     text: >
         az iot dps certificate update --dps-name MyDps --resource-group MyResourceGroup --name MyCertificate --path /certificates/NewCertificate.pem --etag AAAAAAAAAAA=
-  - name: Update a CA certificate in an Azure IoT Hub device provisioning service by uploading a new CER file.
+  - name: Update a CA certificate in an Azure IoT Hub Device Provisioning Service by uploading a new CER file.
     text: >
         az iot dps certificate update --dps-name MyDps --resource-group MyResourceGroup --name MyCertificate --path /certificates/NewCertificate.cer --etag AAAAAAAAAAA=
 """
@@ -150,22 +200,22 @@ examples:
 
 helps['iot dps create'] = """
 type: command
-short-summary: Create an Azure IoT Hub device provisioning service.
+short-summary: Create an Azure IoT Hub Device Provisioning Service.
 long-summary: For an introduction to Azure IoT Hub Device Provisioning Service, see https://docs.microsoft.com/azure/iot-dps/about-iot-dps
 examples:
-  - name: Create an Azure IoT Hub device provisioning service with the standard pricing tier S1, in the region of the resource group.
+  - name: Create an Azure IoT Hub Device Provisioning Service with the standard pricing tier S1, in the region of the resource group.
     text: >
         az iot dps create --name MyDps --resource-group MyResourceGroup
-  - name: Create an Azure IoT Hub device provisioning service with the standard pricing tier S1, in the 'eastus' region.
+  - name: Create an Azure IoT Hub Device Provisioning Service with the standard pricing tier S1, in the 'eastus' region.
     text: >
         az iot dps create --name MyDps --resource-group MyResourceGroup --location eastus
 """
 
 helps['iot dps delete'] = """
 type: command
-short-summary: Delete an Azure IoT Hub device provisioning service.
+short-summary: Delete an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Delete an Azure IoT Hub device provisioning service 'MyDps'
+  - name: Delete an Azure IoT Hub Device Provisioning Service 'MyDps'
     text: >
         az iot dps delete --name MyDps --resource-group MyResourceGroup
 """
@@ -177,28 +227,28 @@ short-summary: Manage Azure IoT Hub Device Provisioning Service linked IoT hubs.
 
 helps['iot dps linked-hub create'] = """
 type: command
-short-summary: Create a linked IoT hub in an Azure IoT Hub device provisioning service.
+short-summary: Create a linked IoT hub in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Create a linked IoT hub in an Azure IoT Hub device provisioning service
+  - name: Create a linked IoT hub in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps linked-hub create --dps-name MyDps --resource-group MyResourceGroup --connection-string HostName=test.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=XNBhoasdfhqRlgGnasdfhivtshcwh4bJwe7c0RIGuWsirW0= --location westus
-  - name: Create a linked IoT hub in an Azure IoT Hub device provisioning service which applies allocation weight and weight being 10
+  - name: Create a linked IoT hub in an Azure IoT Hub Device Provisioning Service which applies allocation weight and weight being 10
     text: >
         az iot dps linked-hub create --dps-name MyDps --resource-group MyResourceGroup --connection-string HostName=test.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=XNBhoasdfhqRlgGnasdfhivtshcwh4bJwe7c0RIGuWsirW0= --location westus --allocation-weight 10 --apply-allocation-policy True
 """
 
 helps['iot dps linked-hub delete'] = """
 type: command
-short-summary: Update a linked IoT hub in an Azure IoT Hub device provisioning service.
+short-summary: Update a linked IoT hub in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Delete linked IoT hub 'MyLinkedHub' in an Azure IoT Hub device provisioning service
+  - name: Delete linked IoT hub 'MyLinkedHub' in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps linked-hub delete --dps-name MyDps --resource-group MyResourceGroup --linked-hub MyLinkedHub
 """
 
 helps['iot dps linked-hub list'] = """
 type: command
-short-summary: List all linked IoT hubs in an Azure IoT Hub device provisioning service.
+short-summary: List all linked IoT hubs in an Azure IoT Hub Device Provisioning Service.
 examples:
   - name: List all linked IoT hubs in MyDps
     text: >
@@ -207,48 +257,48 @@ examples:
 
 helps['iot dps linked-hub show'] = """
 type: command
-short-summary: Show details of a linked IoT hub in an Azure IoT Hub device provisioning service.
+short-summary: Show details of a linked IoT hub in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Show details of linked IoT hub 'MyLinkedHub' in an Azure IoT Hub device provisioning service
+  - name: Show details of linked IoT hub 'MyLinkedHub' in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps linked-hub show --dps-name MyDps --resource-group MyResourceGroup --linked-hub MyLinkedHub
 """
 
 helps['iot dps linked-hub update'] = """
 type: command
-short-summary: Update a linked IoT hub in an Azure IoT Hub device provisioning service.
+short-summary: Update a linked IoT hub in an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Update linked IoT hub 'MyLinkedHub.azure-devices.net' in an Azure IoT Hub device provisioning service
+  - name: Update linked IoT hub 'MyLinkedHub.azure-devices.net' in an Azure IoT Hub Device Provisioning Service
     text: >
         az iot dps linked-hub update --dps-name MyDps --resource-group MyResourceGroup --linked-hub MyLinkedHub.azure-devices.net --allocation-weight 10 --apply-allocation-policy True
 """
 
 helps['iot dps list'] = """
 type: command
-short-summary: List Azure IoT Hub device provisioning services.
+short-summary: List Azure IoT Hub Device Provisioning Services.
 examples:
-  - name: List all Azure IoT Hub device provisioning services in a subscription.
+  - name: List all Azure IoT Hub Device Provisioning Services in a subscription.
     text: >
         az iot dps list
-  - name: List all Azure IoT Hub device provisioning services in the resource group 'MyResourceGroup'
+  - name: List all Azure IoT Hub Device Provisioning Services in the resource group 'MyResourceGroup'
     text: >
         az iot dps list --resource-group MyResourceGroup
 """
 
 helps['iot dps show'] = """
 type: command
-short-summary: Get the details of an Azure IoT Hub device provisioning service.
+short-summary: Get the details of an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Show details of an Azure IoT Hub device provisioning service 'MyDps'
+  - name: Show details of an Azure IoT Hub Device Provisioning Service 'MyDps'
     text: >
         az iot dps show --name MyDps --resource-group MyResourceGroup
 """
 
 helps['iot dps update'] = """
 type: command
-short-summary: Update an Azure IoT Hub device provisioning service.
+short-summary: Update an Azure IoT Hub Device Provisioning Service.
 examples:
-  - name: Update Allocation Policy to 'GeoLatency' of an Azure IoT Hub device provisioning service 'MyDps'
+  - name: Update Allocation Policy to 'GeoLatency' of an Azure IoT Hub Device Provisioning Service 'MyDps'
     text: >
         az iot dps update --name MyDps --resource-group MyResourceGroup --set properties.allocationPolicy="GeoLatency"
 """
