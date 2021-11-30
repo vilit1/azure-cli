@@ -231,7 +231,11 @@ def iot_dps_linked_hub_list(client, dps_name, resource_group_name=None):
     return dps.properties.iot_hubs
 
 
-def iot_dps_linked_hub_get(client, dps_name, linked_hub, resource_group_name=None):
+def iot_dps_linked_hub_get(cmd, client, dps_name, linked_hub, resource_group_name=None):
+    if '.' not in linked_hub:
+        hub_client = iot_hub_service_factory(cmd.cli_ctx)
+        linked_hub = _get_iot_hub_hostname(hub_client, linked_hub)
+
     dps = iot_dps_get(client, dps_name, resource_group_name)
     for hub in dps.properties.iot_hubs:
         if hub.name == linked_hub:
@@ -255,12 +259,18 @@ def iot_dps_linked_hub_create(
     if not connection_string and not hub_name:
         raise CLIError("Please provide an IoT Hub connection string or the name of the IoT Hub.")
     elif not connection_string:
+        # Get the connection string for the hub
         hub_client = iot_hub_service_factory(cmd.cli_ctx)
         connection_string = iot_hub_show_connection_string(
             hub_client, hub_name=hub_name, resource_group_name=hub_resource_group_name
         )['connectionString']
 
     if not location:
+        if not hub_name:
+            # Ensure there is a hub name
+            name_start = connection_string.find("HostName=") + len("HostName=")
+            hub_name = connection_string[name_start : connection_string.find(".", name_start)]
+
         hub_client = iot_hub_service_factory(cmd.cli_ctx)
         location = iot_hub_get(cmd, hub_client, hub_name=hub_name, resource_group_name=hub_resource_group_name).location
 
@@ -291,6 +301,10 @@ def iot_dps_linked_hub_create(
 
 def iot_dps_linked_hub_update(cmd, client, dps_name, linked_hub, resource_group_name=None, apply_allocation_policy=None,
                               allocation_weight=None, no_wait=False):
+    if '.' not in linked_hub:
+        hub_client = iot_hub_service_factory(cmd.cli_ctx)
+        linked_hub = _get_iot_hub_hostname(hub_client, linked_hub)
+
     resource_group_name = _ensure_dps_resource_group_name(client, resource_group_name, dps_name)
     dps_linked_hubs = []
     dps_linked_hubs.extend(iot_dps_linked_hub_list(client, dps_name, resource_group_name))
@@ -313,10 +327,14 @@ def iot_dps_linked_hub_update(cmd, client, dps_name, linked_hub, resource_group_
     if no_wait:
         return client.iot_dps_resource.begin_create_or_update(resource_group_name, dps_name, dps_description)
     LongRunningOperation(cmd.cli_ctx)(client.iot_dps_resource.begin_create_or_update(resource_group_name, dps_name, dps_description))
-    return iot_dps_linked_hub_get(client, dps_name, linked_hub, resource_group_name)
+    return iot_dps_linked_hub_get(cmd, client, dps_name, linked_hub, resource_group_name)
 
 
 def iot_dps_linked_hub_delete(cmd, client, dps_name, linked_hub, resource_group_name=None, no_wait=False):
+    if '.' not in linked_hub:
+        hub_client = iot_hub_service_factory(cmd.cli_ctx)
+        linked_hub = _get_iot_hub_hostname(hub_client, linked_hub)
+
     resource_group_name = _ensure_dps_resource_group_name(client, resource_group_name, dps_name)
     dps_linked_hubs = []
     dps_linked_hubs.extend(iot_dps_linked_hub_list(client, dps_name, resource_group_name))
@@ -703,9 +721,7 @@ def _get_hub_connection_string(client, hub_name, resource_group_name, policy_nam
         policies.extend(iot_hub_policy_list(client, hub_name, resource_group_name))
     else:
         policies.append(iot_hub_policy_get(client, hub_name, policy_name, resource_group_name))
-    # Intermediate fix to support domains beyond azure-devices.netproperty
-    hub = _get_iot_hub_by_name(client, hub_name)
-    hostname = hub.properties.host_name
+    hostname = _get_iot_hub_hostname(client, hub_name)
     conn_str_template = 'HostName={};SharedAccessKeyName={};SharedAccessKey={}'
     return [conn_str_template.format(hostname,
                                      p.key_name,
@@ -1192,6 +1208,11 @@ def _get_iot_hub_by_name(client, hub_name):
         raise CLIError("No IoT Hub found with name {} in current subscription.".format(hub_name))
     return target_hub
 
+
+def _get_iot_hub_hostname(client, hub_name):
+    # Intermediate fix to support domains beyond azure-devices.net properly
+    hub = _get_iot_hub_by_name(client, hub_name)
+    return hub.properties.host_name
 
 def _ensure_resource_group_existence(cli_ctx, resource_group_name):
     resource_group_client = resource_service_factory(cli_ctx).resource_groups

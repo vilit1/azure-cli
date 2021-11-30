@@ -17,7 +17,7 @@ class IoTDpsTest(ScenarioTest):
         dps_name = self.create_random_name('dps', 20)
         hub_name = self.create_random_name('iot', 20)
 
-        self.cmd('iot hub create -n {} -g {} --sku S1'.format(hub_name, group_name),
+        self.cmd('az iot hub create -n {} -g {} --sku S1'.format(hub_name, group_name),
                  checks=[self.check('resourcegroup', group_name),
                          self.check('name', hub_name),
                          self.check('sku.name', 'S1')])
@@ -182,9 +182,15 @@ class IoTDpsTest(ScenarioTest):
         # Create linked-hub with hub name, resource group, location
         self.cmd('az iot dps linked-hub create --dps-name {} -g {} --hub-name {} --hrg {} --l {}'
                  .format(dps_name, group_name, hub_name, group_name, group_location))
-        self.cmd('az iot dps linked-hub delete --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_host_name))
+        self.cmd('az iot dps linked-hub delete --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_name))
 
-        # Create linked-hub using connection string
+        # Create linked-hub using only connection string
+        connection_string = self._show_hub_connection_string(hub_name, group_name)
+        self.cmd('az iot dps linked-hub create --dps-name {} -g {} --connection-string {}'
+                 .format(dps_name, group_name, connection_string))
+        self.cmd('az iot dps linked-hub delete --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_name))
+
+        # Create linked-hub using connection string and location
         connection_string = self._show_hub_connection_string(hub_name, group_name)
         self.cmd('az iot dps linked-hub create --dps-name {} -g {} --connection-string {} -l {}'
                  .format(dps_name, group_name, connection_string, group_location))
@@ -196,6 +202,12 @@ class IoTDpsTest(ScenarioTest):
         ])
 
         self.cmd('az iot dps linked-hub show --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_host_name), checks=[
+            self.check('name', hub_host_name),
+            self.check('location', group_location)
+        ])
+
+        # Linked hub should support host name and hub name
+        self.cmd('az iot dps linked-hub show --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_name), checks=[
             self.check('name', hub_host_name),
             self.check('location', group_location)
         ])
@@ -214,8 +226,9 @@ class IoTDpsTest(ScenarioTest):
 
         self.cmd('az iot dps linked-hub delete --dps-name {} -g {} --linked-hub {}'.format(dps_name, group_name, hub_host_name))
 
-        # Delete DPS
+        # Delete DPS and Hub
         self.cmd('az iot dps delete -g {} -n {}'.format(group_name, dps_name))
+        self.cmd('az iot hub delete -n {} -g {}'.format(hub_name, group_name))
 
     def _get_hub_policy_primary_key(self, hub_name, key_name):
         output = self.cmd('az iot hub policy show --hub-name {} -n {}'.format(hub_name, key_name))
