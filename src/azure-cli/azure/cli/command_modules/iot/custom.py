@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------------------
 # pylint: disable=no-self-use,no-member,line-too-long,too-few-public-methods,too-many-lines,too-many-arguments,too-many-locals
 
+import re
 from enum import Enum
 from knack.log import get_logger
 from knack.util import CLIError
@@ -147,7 +148,7 @@ def iot_dps_policy_create(
     resource_group_name = _ensure_dps_resource_group_name(client, resource_group_name, dps_name)
     dps_access_policies = []
     dps_access_policies.extend(iot_dps_policy_list(client, dps_name, resource_group_name))
-    if _is_policy_existed(dps_access_policies, access_policy_name):
+    if _does_policy_exist(dps_access_policies, access_policy_name):
         raise CLIError("Access policy {0} already existed.".format(access_policy_name))
 
     dps = iot_dps_get(client, dps_name, resource_group_name)
@@ -180,7 +181,7 @@ def iot_dps_policy_update(
     dps_access_policies = []
     dps_access_policies.extend(iot_dps_policy_list(client, dps_name, resource_group_name))
 
-    if not _is_policy_existed(dps_access_policies, access_policy_name):
+    if not _does_policy_exist(dps_access_policies, access_policy_name):
         raise CLIError("Access policy {0} doesn't exist.".format(access_policy_name))
 
     for policy in dps_access_policies:
@@ -209,7 +210,7 @@ def iot_dps_policy_delete(cmd, client, dps_name, access_policy_name, resource_gr
     dps_access_policies = []
     dps_access_policies.extend(iot_dps_policy_list(client, dps_name, resource_group_name))
 
-    if not _is_policy_existed(dps_access_policies, access_policy_name):
+    if not _does_policy_exist(dps_access_policies, access_policy_name):
         raise CLIError("Access policy {0} doesn't existed.".format(access_policy_name))
     updated_policies = [p for p in dps_access_policies if p.key_name.lower() != access_policy_name.lower()]
 
@@ -256,8 +257,8 @@ def iot_dps_linked_hub_create(
     allocation_weight=None,
     no_wait=False
 ):
-    if not connection_string and not hub_name:
-        raise CLIError("Please provide an IoT Hub connection string or the name of the IoT Hub.")
+    if not any([connection_string, hub_name]):
+        raise CLIError("Please provide the IoT Hub name or connection string.")
     elif not connection_string:
         # Get the connection string for the hub
         hub_client = iot_hub_service_factory(cmd.cli_ctx)
@@ -266,10 +267,12 @@ def iot_dps_linked_hub_create(
         )['connectionString']
 
     if not location:
+        # Parse out hub name from connection string if needed
         if not hub_name:
-            # Ensure there is a hub name
-            name_start = connection_string.find("HostName=") + len("HostName=")
-            hub_name = connection_string[name_start : connection_string.find(".", name_start)]
+            try:
+                hub_name = re.search(r"hostname=(.[^\;\.]+)?", connection_string, re.IGNORECASE).group(1)
+            except AttributeError:
+                raise CLIError("Please provide a valid IoT Hub connection string.")
 
         hub_client = iot_hub_service_factory(cmd.cli_ctx)
         location = iot_hub_get(cmd, hub_client, hub_name=hub_name, resource_group_name=hub_resource_group_name).location
@@ -860,7 +863,7 @@ def iot_hub_policy_create(cmd, client, hub_name, policy_name, permissions, resou
     hub = iot_hub_get(cmd, client, hub_name, resource_group_name)
     policies = []
     policies.extend(iot_hub_policy_list(client, hub_name, hub.additional_properties['resourcegroup']))
-    if _is_policy_existed(policies, policy_name):
+    if _does_policy_exist(policies, policy_name):
         raise CLIError("Policy {0} already existed.".format(policy_name))
     policies.append(SharedAccessSignatureAuthorizationRule(key_name=policy_name, rights=rights))
     hub.properties.authorization_policies = policies
@@ -871,7 +874,7 @@ def iot_hub_policy_delete(cmd, client, hub_name, policy_name, resource_group_nam
     import copy
     hub = iot_hub_get(cmd, client, hub_name, resource_group_name)
     policies = iot_hub_policy_list(client, hub_name, hub.additional_properties['resourcegroup'])
-    if not _is_policy_existed(copy.deepcopy(policies), policy_name):
+    if not _does_policy_exist(copy.deepcopy(policies), policy_name):
         raise CLIError("Policy {0} not found.".format(policy_name))
     updated_policies = [p for p in policies if p.key_name.lower() != policy_name.lower()]
     hub.properties.authorization_policies = updated_policies
@@ -882,7 +885,7 @@ def iot_hub_policy_key_renew(cmd, client, hub_name, policy_name, regenerate_key,
     hub = iot_hub_get(cmd, client, hub_name, resource_group_name)
     policies = []
     policies.extend(iot_hub_policy_list(client, hub_name, hub.additional_properties['resourcegroup']))
-    if not _is_policy_existed(policies, policy_name):
+    if not _does_policy_exist(policies, policy_name):
         raise CLIError("Policy {0} not found.".format(policy_name))
     updated_policies = [p for p in policies if p.key_name.lower() != policy_name.lower()]
     requested_policy = [p for p in policies if p.key_name.lower() == policy_name.lower()]
@@ -905,7 +908,7 @@ def iot_hub_policy_key_renew(cmd, client, hub_name, policy_name, regenerate_key,
     return iot_hub_policy_get(client, hub_name, policy_name, resource_group_name)
 
 
-def _is_policy_existed(policies, policy_name):
+def _does_policy_exist(policies, policy_name):
     policy_set = {p.key_name.lower() for p in policies}
     return policy_name.lower() in policy_set
 

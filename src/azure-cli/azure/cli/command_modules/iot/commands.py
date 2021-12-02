@@ -60,7 +60,11 @@ def load_command_table(self, _):  # pylint: disable=too-many-statements
                                  command_type=update_custom_util)
 
     # iot dps access-policy commands (Deprecated)
-    with self.command_group('iot dps access-policy', client_factory=iot_service_provisioning_factory, deprecate_info=self.deprecate(redirect='iot dps policy', hide=True)) as g:
+    with self.command_group('iot dps access-policy',
+                            client_factory=iot_service_provisioning_factory,
+                            deprecate_info=self.deprecate(redirect='iot dps policy',
+                                                          expiration='2.33.0')
+                            ) as g:
         g.custom_command('list', 'iot_dps_policy_list')
         g.custom_show_command('show', 'iot_dps_policy_get')
         g.custom_command('create', 'iot_dps_policy_create', supports_no_wait=True)

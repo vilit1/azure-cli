@@ -64,13 +64,19 @@ def load_arguments(self, _):  # pylint: disable=too-many-statements
                    help='Pricing tier for the IoT Hub Device Provisioning Service.')
         c.argument('unit', help='Units in your IoT Hub Device Provisioning Service.', type=int)
 
-    for subgroup in ['access-policy', 'policy', 'linked-hub', 'certificate']:
+    # To depricate
+    for subgroup in ['access-policy', 'linked-hub', 'certificate']:
         with self.argument_context('iot dps {}'.format(subgroup)) as c:
             c.argument('dps_name', options_list=['--dps-name'], id_part=None)
 
+    # To replace depricated
+    for subgroup in ['policy']:
+        with self.argument_context('iot dps {}'.format(subgroup)) as c:
+            c.argument('dps_name', options_list=['--dps-name', '-n'], id_part=None)
+
     with self.argument_context('iot dps access-policy') as c:
         c.argument('access_policy_name', options_list=['--access-policy-name', '--name', '-n'],
-                   help='A friendly name for DPS access policy.')
+                   help='A friendly name for DPS shared access policy.')
 
     with self.argument_context('iot dps access-policy create') as c:
         c.argument('rights', options_list=['--rights', '-r'], nargs='+',
@@ -89,7 +95,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-statements
         c.argument('secondary_key', help='Secondary SAS key value.')
 
     with self.argument_context('iot dps policy') as c:
-        c.argument('access_policy_name', options_list=['--policy-name', '--name', '-n'],
+        c.argument('access_policy_name', options_list=['--policy-name', '--pn'],
                    help='A friendly name for DPS access policy.')
 
     with self.argument_context('iot dps policy create') as c:
@@ -122,7 +128,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-statements
                    arg_group='IoT Hub Identifier')
         c.argument('location', get_location_type(self.cli_ctx),
                    help='Location of the IoT hub.',
-                   arg_group='IoT Hub Identifier')
+                   arg_group='IoT Hub Identifier',
+                   deprecate_info=c.deprecate(hide=True))
         c.argument('apply_allocation_policy',
                    help='A boolean indicating whether to apply allocation policy to the IoT hub.',
                    arg_type=get_three_state_flag())

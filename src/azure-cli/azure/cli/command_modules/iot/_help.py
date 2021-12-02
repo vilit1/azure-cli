@@ -20,7 +20,7 @@ short-summary: Manage Azure IoT Hub Device Provisioning Service.
 
 helps['iot dps access-policy'] = """
 type: group
-short-summary: Manage access policies for an Azure IoT Hub Device Provisioning Service instance.
+short-summary: Manage shared access policies for an Azure IoT Hub Device Provisioning Service instance.
 """
 
 helps['iot dps access-policy create'] = """
@@ -36,7 +36,7 @@ helps['iot dps access-policy delete'] = """
 type: command
 short-summary: Delete a shared access policies in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: Delete shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service instance 'MyDps'
+  - name: Delete shared access policy 'MyPolicy' in the Azure IoT Hub Device Provisioning Service instance 'MyDps'
     text: >
         az iot dps access-policy delete --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
 """
@@ -45,7 +45,7 @@ helps['iot dps access-policy list'] = """
 type: command
 short-summary: List all shared access policies in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: List all shared access policies in an Azure IoT Hub Device Provisioning Service instance 'MyDps'
+  - name: List all shared access policies in the Azure IoT Hub Device Provisioning Service instance 'MyDps'
     text: >
         az iot dps access-policy list --dps-name MyDps --resource-group MyResourceGroup
 """
@@ -54,7 +54,7 @@ helps['iot dps access-policy show'] = """
 type: command
 short-summary: Show details of a shared access policies in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: Show details of shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service instance 'MyDps'
+  - name: Show details of shared access policy 'MyPolicy' in the Azure IoT Hub Device Provisioning Service instance 'MyDps'
     text: >
         az iot dps access-policy show --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
 """
@@ -63,14 +63,14 @@ helps['iot dps access-policy update'] = """
 type: command
 short-summary: Update a shared access policy in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: Update access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service instance with EnrollmentWrite right
+  - name: Update shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service instance with EnrollmentWrite right
     text: >
         az iot dps access-policy update --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy --rights EnrollmentWrite
 """
 
 helps['iot dps policy'] = """
 type: group
-short-summary: Manage access policies for an Azure IoT Hub Device Provisioning Service instance.
+short-summary: Manage shared access policies for an Azure IoT Hub Device Provisioning Service instance.
 """
 
 helps['iot dps policy create'] = """
@@ -86,7 +86,7 @@ helps['iot dps policy delete'] = """
 type: command
 short-summary: Delete a shared access policies in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: Delete shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service
+  - name: Delete shared access policy 'MyPolicy' in the Azure IoT Hub Device Provisioning Service instance 'MyDps'
     text: >
         az iot dps policy delete --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
 """
@@ -95,7 +95,7 @@ helps['iot dps policy list'] = """
 type: command
 short-summary: List all shared access policies in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: List all shared access policies in MyDps
+  - name: List all shared access policies in MyDps in the Azure IoT Hub Device Provisioning Service instance 'MyDps'
     text: >
         az iot dps policy list --dps-name MyDps --resource-group MyResourceGroup
 """
@@ -104,7 +104,7 @@ helps['iot dps policy show'] = """
 type: command
 short-summary: Show details of a shared access policies in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: Show details of shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service instance
+  - name: Show details of shared access policy 'MyPolicy' in the Azure IoT Hub Device Provisioning Service instance 'MyDps'
     text: >
         az iot dps policy show --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy
 """
@@ -113,7 +113,7 @@ helps['iot dps policy update'] = """
 type: command
 short-summary: Update a shared access policy in an Azure IoT Hub Device Provisioning Service instance.
 examples:
-  - name: Update access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service instance with EnrollmentWrite right
+  - name: Update shared access policy 'MyPolicy' in an Azure IoT Hub Device Provisioning Service instance with EnrollmentWrite right
     text: >
         az iot dps policy update --dps-name MyDps --resource-group MyResourceGroup --name MyPolicy --rights EnrollmentWrite
 """
