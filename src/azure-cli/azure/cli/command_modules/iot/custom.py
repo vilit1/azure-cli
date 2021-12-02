@@ -149,7 +149,7 @@ def iot_dps_policy_create(
     dps_access_policies = []
     dps_access_policies.extend(iot_dps_policy_list(client, dps_name, resource_group_name))
     if _does_policy_exist(dps_access_policies, access_policy_name):
-        raise CLIError("Access policy {0} already existed.".format(access_policy_name))
+        raise CLIError("Access policy {} already exists.".format(access_policy_name))
 
     dps = iot_dps_get(client, dps_name, resource_group_name)
     access_policy_rights = _convert_rights_to_access_rights(rights)
@@ -182,7 +182,7 @@ def iot_dps_policy_update(
     dps_access_policies.extend(iot_dps_policy_list(client, dps_name, resource_group_name))
 
     if not _does_policy_exist(dps_access_policies, access_policy_name):
-        raise CLIError("Access policy {0} doesn't exist.".format(access_policy_name))
+        raise CLIError("Access policy {} doesn't exist.".format(access_policy_name))
 
     for policy in dps_access_policies:
         if policy.key_name == access_policy_name:
@@ -281,10 +281,6 @@ def iot_dps_linked_hub_create(
     dps_linked_hubs = []
     dps_linked_hubs.extend(iot_dps_linked_hub_list(client, dps_name, resource_group_name))
 
-    # Hack due to DPS Swagger/SDK issue
-    # In the newer API version the name parameter is required
-    # however in the SDK name is read-only/assigned to None
-    client.api_version = '2017-11-15'
     dps_linked_hubs.append(IotHubDefinitionDescription(connection_string=connection_string,
                                                        location=location,
                                                        apply_allocation_policy=apply_allocation_policy,
