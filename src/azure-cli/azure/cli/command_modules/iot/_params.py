@@ -64,12 +64,12 @@ def load_arguments(self, _):  # pylint: disable=too-many-statements
                    help='Pricing tier for the IoT Hub Device Provisioning Service.')
         c.argument('unit', help='Units in your IoT Hub Device Provisioning Service.', type=int)
 
-    # To depricate
+    # To deprecate
     for subgroup in ['access-policy', 'linked-hub', 'certificate']:
         with self.argument_context('iot dps {}'.format(subgroup)) as c:
             c.argument('dps_name', options_list=['--dps-name'], id_part=None)
 
-    # To replace depricated
+    # To replace deprecated
     for subgroup in ['policy']:
         with self.argument_context('iot dps {}'.format(subgroup)) as c:
             c.argument('dps_name', options_list=['--dps-name', '-n'], id_part=None)
