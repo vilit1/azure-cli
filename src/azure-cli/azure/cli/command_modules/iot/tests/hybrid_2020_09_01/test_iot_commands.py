@@ -470,7 +470,7 @@ class IoTHubTest(ScenarioTest):
 
         private_endpoint = self.cmd(
             'network private-endpoint create -g {0} -n {1} --vnet-name {2} --subnet {3} -l {4} '
-            '--connection-name {5} --private-connection-resource-id {6} --group-ids {7}'
+            '--connection-name {5} --private-connection-resource-id {6} --group-id {7}'
             .format(rg, endpoint_name, vnet, subnet, location, connection_name, hub_id, group_id)
         ).get_output_in_json()
 
