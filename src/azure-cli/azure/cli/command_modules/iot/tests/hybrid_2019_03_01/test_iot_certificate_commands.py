@@ -6,6 +6,8 @@
 
 from azure.cli.testsdk import ResourceGroupPreparer, ScenarioTest
 
+from OpenSSL import crypto, SSL
+from os.path import exists, join
 from azure.cli.command_modules.iot.tests.hybrid_2019_03_01._test_utils import _create_test_cert, _delete_test_cert, _create_verification_cert
 import random
 

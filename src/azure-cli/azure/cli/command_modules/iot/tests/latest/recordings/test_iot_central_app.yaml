@@ -13,21 +13,21 @@ interactions:
       ParameterSetName:
       - -n -g --subdomain --sku
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-azure-mgmt-resource/20.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-azure-mgmt-resource/19.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2021-04-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","type":"Microsoft.Resources/resourceGroups","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2022-04-29T19:01:16Z"},"properties":{"provisioningState":"Succeeded"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","type":"Microsoft.Resources/resourceGroups","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2021-12-15T17:42:19Z"},"properties":{"provisioningState":"Succeeded"}}'
     headers:
       cache-control:
       - no-cache
       content-length:
-      - '310'
+      - '428'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:01:17 GMT
+      - Wed, 15 Dec 2021 17:42:26 GMT
       expires:
       - '-1'
       pragma:
@@ -54,29 +54,29 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '136'
+      - '146'
       Content-Type:
       - application/json
       ParameterSetName:
       - -n -g --subdomain --sku
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"8d87632d-b0fc-4112-89c3-61d71db42d8b","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"96186c0d-f1f6-4861-9dd1-1b9052c6c6db","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '490'
+      - '569'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:01:25 GMT
+      - Wed, 15 Dec 2021 17:42:31 GMT
       etag:
-      - '"4000a8f0-0000-0100-0000-626c36020000"'
+      - '"02002d62-0000-0100-0000-61ba29060000"'
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       x-cache:
@@ -88,15 +88,15 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 85l9hkzv.0
+      - 834akbkj.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-writes:
       - '1199'
       x-msedge-ref:
-      - 'Ref A: 9F79B228F8F347F3BB81B44E3E5D2FC1 Ref B: CO1EDGE1410 Ref C: 2022-04-29T19:01:20Z'
+      - 'Ref A: 976CD5AA4DAD438198B0D1E9618CEA72 Ref B: CO1EDGE1517 Ref C: 2021-12-15T17:42:28Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -116,23 +116,23 @@ interactions:
       ParameterSetName:
       - -n -g --subdomain --sku
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"8d87632d-b0fc-4112-89c3-61d71db42d8b","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"96186c0d-f1f6-4861-9dd1-1b9052c6c6db","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '490'
+      - '569'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:01:55 GMT
+      - Wed, 15 Dec 2021 17:43:02 GMT
       etag:
-      - W/"4000a8f0-0000-0100-0000-626c36020000"
+      - W/"02002d62-0000-0100-0000-61ba29060000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -150,11 +150,11 @@ interactions:
       x-iot-cluster:
       - iotcprodwestus01
       x-iot-correlation:
-      - cgfpr7d5.0
+      - aetn4szh.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: 9CBADDD25A674FFBBD6395522C5748DA Ref B: CO1EDGE1410 Ref C: 2022-04-29T19:01:55Z'
+      - 'Ref A: A4F6F3142D554E95AB29524CAD776CCC Ref B: CO1EDGE1517 Ref C: 2021-12-15T17:43:02Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -174,21 +174,21 @@ interactions:
       ParameterSetName:
       - -n -g --subdomain --template --display-name --sku
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-azure-mgmt-resource/20.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-azure-mgmt-resource/19.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2021-04-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","type":"Microsoft.Resources/resourceGroups","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2022-04-29T19:01:16Z"},"properties":{"provisioningState":"Succeeded"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","type":"Microsoft.Resources/resourceGroups","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2021-12-15T17:42:19Z"},"properties":{"provisioningState":"Succeeded"}}'
     headers:
       cache-control:
       - no-cache
       content-length:
-      - '310'
+      - '428'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:01:55 GMT
+      - Wed, 15 Dec 2021 17:43:02 GMT
       expires:
       - '-1'
       pragma:
@@ -216,30 +216,30 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '190'
+      - '195'
       Content-Type:
       - application/json
       ParameterSetName:
       - -n -g --subdomain --template --display-name --sku
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"b38e019d-d183-4669-bc19-05f8fed9b816","displayName":"My
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"cfbf2aef-13aa-4755-99a3-8b2013e1c8b4","displayName":"My
         Custom App Display Name","subdomain":"iotc-cli-test000002-template","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST1"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '524'
+      - '598'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:02:02 GMT
+      - Wed, 15 Dec 2021 17:43:08 GMT
       etag:
-      - '"66007afd-0000-0100-0000-626c36290000"'
+      - '"1d0036e4-0000-0100-0000-61ba292a0000"'
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       x-cache:
@@ -253,13 +253,13 @@ interactions:
       x-iot-cluster:
       - iotcprodwestus01
       x-iot-correlation:
-      - 2wvvd02f.0
+      - 2vx5xeux.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-writes:
       - '1199'
       x-msedge-ref:
-      - 'Ref A: 17FDE5FA40164145BA1166F7468FFBFA Ref B: CO1EDGE1710 Ref C: 2022-04-29T19:01:58Z'
+      - 'Ref A: 3EE27E35F6FF4C1F94D2F6DB03FACE45 Ref B: CO1EDGE1512 Ref C: 2021-12-15T17:43:04Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -279,24 +279,24 @@ interactions:
       ParameterSetName:
       - -n -g --subdomain --template --display-name --sku
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"b38e019d-d183-4669-bc19-05f8fed9b816","displayName":"My
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"cfbf2aef-13aa-4755-99a3-8b2013e1c8b4","displayName":"My
         Custom App Display Name","subdomain":"iotc-cli-test000002-template","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST1"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '524'
+      - '598'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:02:32 GMT
+      - Wed, 15 Dec 2021 17:43:38 GMT
       etag:
-      - W/"66007afd-0000-0100-0000-626c36290000"
+      - W/"1d0036e4-0000-0100-0000-61ba292a0000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -312,13 +312,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - bxjzyrx.0
+      - babdxzyb.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: B86F1102D67A4B9A97B7C0CE6454F7C1 Ref B: CO1EDGE1710 Ref C: 2022-04-29T19:02:32Z'
+      - 'Ref A: EE19EE19DC4B4A0CAD60788CB02CCE65 Ref B: CO1EDGE1512 Ref C: 2021-12-15T17:43:39Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -338,21 +338,21 @@ interactions:
       ParameterSetName:
       - -n -g --subdomain --sku --mi-system-assigned
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-azure-mgmt-resource/20.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-azure-mgmt-resource/19.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2021-04-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","type":"Microsoft.Resources/resourceGroups","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2022-04-29T19:01:16Z"},"properties":{"provisioningState":"Succeeded"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","type":"Microsoft.Resources/resourceGroups","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2021-12-15T17:42:19Z"},"properties":{"provisioningState":"Succeeded"}}'
     headers:
       cache-control:
       - no-cache
       content-length:
-      - '310'
+      - '428'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:02:32 GMT
+      - Wed, 15 Dec 2021 17:43:38 GMT
       expires:
       - '-1'
       pragma:
@@ -379,29 +379,29 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '182'
+      - '192'
       Content-Type:
       - application/json
       ParameterSetName:
       - -n -g --subdomain --sku --mi-system-assigned
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"0af57aaa-3431-4b1d-999a-4aa16021f7a2","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47","principalId":"f032d017-6b20-48d1-86a4-c3801d7f8859"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"4bc2c80c-0c42-4327-a90f-046655386234","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"12f1b18f-7ebe-46c5-9533-5d9a35ba2bb3","principalId":"679a075a-5392-4406-bea7-55ff64a98321"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '615'
+      - '694'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:02:42 GMT
+      - Wed, 15 Dec 2021 17:43:46 GMT
       etag:
-      - '"0600e359-0000-0100-0000-626c364f0000"'
+      - '"1100adf1-0000-0100-0000-61ba29510000"'
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       x-cache:
@@ -413,15 +413,15 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 6wj3egif.0
+      - 8ijzf12j.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-writes:
       - '1199'
       x-msedge-ref:
-      - 'Ref A: 25BC7CFB3F64442EB2D2D7CD43473520 Ref B: CO1EDGE1908 Ref C: 2022-04-29T19:02:37Z'
+      - 'Ref A: 522213127A9B45CC8A6965B5646DA271 Ref B: CO1EDGE1916 Ref C: 2021-12-15T17:43:41Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -441,23 +441,23 @@ interactions:
       ParameterSetName:
       - -n -g --subdomain --sku --mi-system-assigned
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"0af57aaa-3431-4b1d-999a-4aa16021f7a2","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47","principalId":"f032d017-6b20-48d1-86a4-c3801d7f8859"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"4bc2c80c-0c42-4327-a90f-046655386234","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"12f1b18f-7ebe-46c5-9533-5d9a35ba2bb3","principalId":"679a075a-5392-4406-bea7-55ff64a98321"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '615'
+      - '694'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:12 GMT
+      - Wed, 15 Dec 2021 17:44:17 GMT
       etag:
-      - W/"0600e359-0000-0100-0000-626c364f0000"
+      - W/"1100adf1-0000-0100-0000-61ba29510000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -473,13 +473,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - bapuir3z.0
+      - ck62vgu4.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: 799C9C4F823140FD822EC55FB329EA9F Ref B: CO1EDGE1908 Ref C: 2022-04-29T19:03:12Z'
+      - 'Ref A: 843E4D9A18D348918F08F778EF8A9336 Ref B: CO1EDGE1916 Ref C: 2021-12-15T17:44:17Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -499,24 +499,24 @@ interactions:
       ParameterSetName:
       - -n -g --set
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"b38e019d-d183-4669-bc19-05f8fed9b816","displayName":"My
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"cfbf2aef-13aa-4755-99a3-8b2013e1c8b4","displayName":"My
         Custom App Display Name","subdomain":"iotc-cli-test000002-template","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST1"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '524'
+      - '598'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:12 GMT
+      - Wed, 15 Dec 2021 17:44:17 GMT
       etag:
-      - W/"66007afd-0000-0100-0000-626c36290000"
+      - W/"1d0036e4-0000-0100-0000-61ba292a0000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -532,13 +532,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 70ld01v8.0
+      - 1mgp29dr.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: 63332F6AB73F434BAD193F033FC648AE Ref B: CO1EDGE1917 Ref C: 2022-04-29T19:03:13Z'
+      - 'Ref A: C40AEB768BC94C77B692146A8E4C20B4 Ref B: CO1EDGE1907 Ref C: 2021-12-15T17:44:18Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -558,29 +558,29 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '228'
+      - '238'
       Content-Type:
       - application/json
       ParameterSetName:
       - -n -g --set
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: PATCH
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"b38e019d-d183-4669-bc19-05f8fed9b816","displayName":"iotc-cli-test000002update","subdomain":"iotc-cli-test000002update","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"cfbf2aef-13aa-4755-99a3-8b2013e1c8b4","displayName":"iotc-cli-test000002update","subdomain":"iotc-cli-test000002update","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '520'
+      - '599'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:15 GMT
+      - Wed, 15 Dec 2021 17:44:20 GMT
       etag:
-      - W/"67006a0c-0000-0100-0000-626c36730000"
+      - W/"1d00efee-0000-0100-0000-61ba29740000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -598,13 +598,13 @@ interactions:
       x-iot-cluster:
       - iotcprodwestus01
       x-iot-correlation:
-      - az7t2cd8.0
+      - 9gpqtz9d.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-writes:
       - '1199'
       x-msedge-ref:
-      - 'Ref A: A98C465EAE06416D98DFD72D5B500173 Ref B: CO1EDGE1515 Ref C: 2022-04-29T19:03:14Z'
+      - 'Ref A: 3714318532194F7DA63935DADE069C50 Ref B: CO1EDGE1622 Ref C: 2021-12-15T17:44:19Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -624,23 +624,23 @@ interactions:
       ParameterSetName:
       - -n -g
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"8d87632d-b0fc-4112-89c3-61d71db42d8b","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"96186c0d-f1f6-4861-9dd1-1b9052c6c6db","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '490'
+      - '569'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:16 GMT
+      - Wed, 15 Dec 2021 17:44:21 GMT
       etag:
-      - W/"4000a8f0-0000-0100-0000-626c36020000"
+      - W/"02002d62-0000-0100-0000-61ba29060000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -656,13 +656,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - bj7zhu5f.0
+      - 9rs0o9ul.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: 3D86A5EC565F43069D5C8D428CFB88D6 Ref B: CO1EDGE1906 Ref C: 2022-04-29T19:03:16Z'
+      - 'Ref A: 491563A5C3C14743A719B44EF039C9F3 Ref B: CO1EDGE1307 Ref C: 2021-12-15T17:44:21Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -682,23 +682,23 @@ interactions:
       ParameterSetName:
       - -n -g
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"b38e019d-d183-4669-bc19-05f8fed9b816","displayName":"iotc-cli-test000002update","subdomain":"iotc-cli-test000002update","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template","name":"iotc-cli-test000002-template","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"cfbf2aef-13aa-4755-99a3-8b2013e1c8b4","displayName":"iotc-cli-test000002update","subdomain":"iotc-cli-test000002update","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '520'
+      - '599'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:16 GMT
+      - Wed, 15 Dec 2021 17:44:20 GMT
       etag:
-      - W/"67006a0c-0000-0100-0000-626c36730000"
+      - W/"1d00efee-0000-0100-0000-61ba29740000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -714,13 +714,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 3fg3didm.0
+      - 4xxypmxk.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: AB594511CDA7445782F8F6234BF37E42 Ref B: CO1EDGE1618 Ref C: 2022-04-29T19:03:16Z'
+      - 'Ref A: A544B5C0296D457A9F8DB70A0A257A0B Ref B: CO1EDGE1709 Ref C: 2021-12-15T17:44:21Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -740,23 +740,23 @@ interactions:
       ParameterSetName:
       - -n -g
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"8d87632d-b0fc-4112-89c3-61d71db42d8b","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"96186c0d-f1f6-4861-9dd1-1b9052c6c6db","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '490'
+      - '569'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:16 GMT
+      - Wed, 15 Dec 2021 17:44:21 GMT
       etag:
-      - W/"4000a8f0-0000-0100-0000-626c36020000"
+      - W/"02002d62-0000-0100-0000-61ba29060000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -772,13 +772,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - a94wm6s0.0
+      - 3v7qpqhe.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: 52B92930EAEF4C6384E01CCB287737A0 Ref B: CO1EDGE1819 Ref C: 2022-04-29T19:03:16Z'
+      - 'Ref A: 9E068F8F785745E2A64DDE6BE51728F1 Ref B: CO1EDGE1518 Ref C: 2021-12-15T17:44:21Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -798,23 +798,23 @@ interactions:
       ParameterSetName:
       - -n -g --system-assigned
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"0af57aaa-3431-4b1d-999a-4aa16021f7a2","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47","principalId":"f032d017-6b20-48d1-86a4-c3801d7f8859"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"4bc2c80c-0c42-4327-a90f-046655386234","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"12f1b18f-7ebe-46c5-9533-5d9a35ba2bb3","principalId":"679a075a-5392-4406-bea7-55ff64a98321"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '615'
+      - '694'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:17 GMT
+      - Wed, 15 Dec 2021 17:44:21 GMT
       etag:
-      - W/"0600e359-0000-0100-0000-626c364f0000"
+      - W/"1100adf1-0000-0100-0000-61ba29510000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -830,13 +830,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - bzk53zhs.0
+      - 8m1ddvp.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: 22F1789BF25E45EA91FBCE05D32446E7 Ref B: CO1EDGE1919 Ref C: 2022-04-29T19:03:17Z'
+      - 'Ref A: 0888B5CDCBEB458F9CAA1F9BCE9ECD40 Ref B: CO1EDGE1214 Ref C: 2021-12-15T17:44:22Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -856,29 +856,29 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '232'
+      - '242'
       Content-Type:
       - application/json
       ParameterSetName:
       - -n -g --system-assigned
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: PATCH
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"0af57aaa-3431-4b1d-999a-4aa16021f7a2","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47","principalId":"f032d017-6b20-48d1-86a4-c3801d7f8859"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"4bc2c80c-0c42-4327-a90f-046655386234","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"12f1b18f-7ebe-46c5-9533-5d9a35ba2bb3","principalId":"679a075a-5392-4406-bea7-55ff64a98321"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '615'
+      - '694'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:19 GMT
+      - Wed, 15 Dec 2021 17:44:22 GMT
       etag:
-      - W/"0600e359-0000-0100-0000-626c364f0000"
+      - W/"1100adf1-0000-0100-0000-61ba29510000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -894,15 +894,15 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 64vecbxr.0
+      - cq2khfcv.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-writes:
       - '1199'
       x-msedge-ref:
-      - 'Ref A: 0CF1B99110BB456DA9E4F6E75ABAA84D Ref B: CO1EDGE1919 Ref C: 2022-04-29T19:03:18Z'
+      - 'Ref A: 490732AA86B8438782DEC53CD2EE1F97 Ref B: CO1EDGE1214 Ref C: 2021-12-15T17:44:23Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -922,23 +922,23 @@ interactions:
       ParameterSetName:
       - -n -g
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"0af57aaa-3431-4b1d-999a-4aa16021f7a2","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47","principalId":"f032d017-6b20-48d1-86a4-c3801d7f8859"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"4bc2c80c-0c42-4327-a90f-046655386234","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"12f1b18f-7ebe-46c5-9533-5d9a35ba2bb3","principalId":"679a075a-5392-4406-bea7-55ff64a98321"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '615'
+      - '694'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:19 GMT
+      - Wed, 15 Dec 2021 17:44:23 GMT
       etag:
-      - W/"0600e359-0000-0100-0000-626c364f0000"
+      - W/"1100adf1-0000-0100-0000-61ba29510000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -954,13 +954,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 4u3130z1.0
+      - c1nxksuk.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: B3006380D3F6465A8F4B49383478D9B2 Ref B: CO1EDGE1217 Ref C: 2022-04-29T19:03:19Z'
+      - 'Ref A: 6FCF764970594181A587F8475FBB9285 Ref B: CO1EDGE1207 Ref C: 2021-12-15T17:44:23Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -980,23 +980,23 @@ interactions:
       ParameterSetName:
       - -n -g --system-assigned
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"0af57aaa-3431-4b1d-999a-4aa16021f7a2","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47","principalId":"f032d017-6b20-48d1-86a4-c3801d7f8859"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"4bc2c80c-0c42-4327-a90f-046655386234","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"SystemAssigned","tenantId":"12f1b18f-7ebe-46c5-9533-5d9a35ba2bb3","principalId":"679a075a-5392-4406-bea7-55ff64a98321"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '615'
+      - '694'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:19 GMT
+      - Wed, 15 Dec 2021 17:44:24 GMT
       etag:
-      - W/"0600e359-0000-0100-0000-626c364f0000"
+      - W/"1100adf1-0000-0100-0000-61ba29510000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -1012,13 +1012,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 4k1pbbzw.0
+      - cn8tslrv.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: EA60539092844945A980CF3D310443A9 Ref B: CO1EDGE1907 Ref C: 2022-04-29T19:03:20Z'
+      - 'Ref A: 31BFF68D934342AF981AA762B6419C30 Ref B: CO1EDGE1506 Ref C: 2021-12-15T17:44:24Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -1038,29 +1038,29 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '222'
+      - '232'
       Content-Type:
       - application/json
       ParameterSetName:
       - -n -g --system-assigned
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: PATCH
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
     body:
-      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"0af57aaa-3431-4b1d-999a-4aa16021f7a2","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
+      string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi","name":"iotc-cli-test000002-mi","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"4bc2c80c-0c42-4327-a90f-046655386234","displayName":"iotc-cli-test000002-mi","subdomain":"iotc-cli-test000002-mi","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '502'
+      - '581'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:23 GMT
+      - Wed, 15 Dec 2021 17:44:26 GMT
       etag:
-      - W/"0600415a-0000-0100-0000-626c367a0000"
+      - W/"11008af3-0000-0100-0000-61ba29790000"
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -1076,15 +1076,15 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 9iirzjbs.0
+      - 3fl70eg6.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-writes:
       - '1199'
       x-msedge-ref:
-      - 'Ref A: FBA8A48E31424A2FB28CB55BA4C38F35 Ref B: CO1EDGE1907 Ref C: 2022-04-29T19:03:22Z'
+      - 'Ref A: 7980EB16CB994F21B98C7F5EB64B45FB Ref B: CO1EDGE1506 Ref C: 2021-12-15T17:44:25Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -1106,7 +1106,7 @@ interactions:
       ParameterSetName:
       - -n -g --yes
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: DELETE
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-template?api-version=2021-06-01
   response:
@@ -1118,7 +1118,7 @@ interactions:
       content-length:
       - '0'
       date:
-      - Fri, 29 Apr 2022 19:03:26 GMT
+      - Wed, 15 Dec 2021 17:44:27 GMT
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       x-cache:
@@ -1130,15 +1130,15 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus04
+      - iotcprodwestus02
       x-iot-correlation:
-      - 4qbxvqhr.0
+      - 3cd8mb6e.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-deletes:
       - '14999'
       x-msedge-ref:
-      - 'Ref A: 051A11ECD2FB4EEB82A92D4019B907C0 Ref B: CO1EDGE1320 Ref C: 2022-04-29T19:03:25Z'
+      - 'Ref A: CA5D9BFE8F114638BAD360ABBBC67414 Ref B: CO1EDGE1408 Ref C: 2021-12-15T17:44:27Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -1160,7 +1160,7 @@ interactions:
       ParameterSetName:
       - -n -g --yes
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: DELETE
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002-mi?api-version=2021-06-01
   response:
@@ -1172,7 +1172,7 @@ interactions:
       content-length:
       - '0'
       date:
-      - Fri, 29 Apr 2022 19:03:28 GMT
+      - Wed, 15 Dec 2021 17:44:28 GMT
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       x-cache:
@@ -1184,15 +1184,15 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 5sfed2mr.0
+      - 2rmitrq.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-deletes:
       - '14999'
       x-msedge-ref:
-      - 'Ref A: 56961F20167B4AC79537FCD0BD6E59AB Ref B: CO1EDGE1610 Ref C: 2022-04-29T19:03:28Z'
+      - 'Ref A: 278F17B3744D45618B27848E1832434E Ref B: CO1EDGE1516 Ref C: 2021-12-15T17:44:28Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -1212,21 +1212,21 @@ interactions:
       ParameterSetName:
       - -g
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps?api-version=2021-06-01
   response:
     body:
-      string: '{"value":[{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"8d87632d-b0fc-4112-89c3-61d71db42d8b","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}]}'
+      string: '{"value":[{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002","name":"iotc-cli-test000002","type":"Microsoft.IoTCentral/IoTApps","location":"westus","tags":{},"properties":{"applicationId":"96186c0d-f1f6-4861-9dd1-1b9052c6c6db","displayName":"iotc-cli-test000002","subdomain":"iotc-cli-test000002","template":"iotc-pnp-preview@1.0.0","state":"created"},"sku":{"name":"ST2"},"identity":{"type":"None"}}]}'
     headers:
       cache-control:
       - no-store, must-revalidate, no-cache, max-stale=0, private, post-check=0, pre-check=0
       content-length:
-      - '502'
+      - '581'
       content-type:
       - application/json; charset=utf-8
       date:
-      - Fri, 29 Apr 2022 19:03:29 GMT
+      - Wed, 15 Dec 2021 17:44:29 GMT
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       transfer-encoding:
@@ -1242,13 +1242,13 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 3f1kbred.0
+      - 2i647v8f.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-msedge-ref:
-      - 'Ref A: 5C56A575E9F6464994ED8E9F45377D50 Ref B: CO1EDGE1514 Ref C: 2022-04-29T19:03:29Z'
+      - 'Ref A: 574F54A9C694446E94B67A516054573E Ref B: CO1EDGE1909 Ref C: 2021-12-15T17:44:29Z'
       x-xss-protection:
       - 1; mode=block
     status:
@@ -1270,7 +1270,7 @@ interactions:
       ParameterSetName:
       - -n -g --yes
       User-Agent:
-      - AZURECLI/2.35.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.8.3 (Windows-10-10.0.22000-SP0)
+      - AZURECLI/2.30.0 azsdk-python-mgmt-iotcentral/9.0.0 Python/3.9.9 (Windows-10-10.0.22000-SP0)
     method: DELETE
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.IoTCentral/iotApps/iotc-cli-test000002?api-version=2021-06-01
   response:
@@ -1282,7 +1282,7 @@ interactions:
       content-length:
       - '0'
       date:
-      - Fri, 29 Apr 2022 19:03:31 GMT
+      - Wed, 15 Dec 2021 17:44:30 GMT
       strict-transport-security:
       - max-age=31536000; includeSubDomains
       x-cache:
@@ -1294,15 +1294,15 @@ interactions:
       x-frame-options:
       - deny
       x-iot-cluster:
-      - iotcprodwestus01
+      - iotcprodwestus02
       x-iot-correlation:
-      - 93qrk4g9.0
+      - tua4qz.0
       x-iot-version:
-      - 041722.0001-release
+      - 121221.0001-release
       x-ms-ratelimit-remaining-subscription-deletes:
       - '14999'
       x-msedge-ref:
-      - 'Ref A: 918F6088E6954002992A17BC4ABAF1AD Ref B: CO1EDGE1209 Ref C: 2022-04-29T19:03:30Z'
+      - 'Ref A: 64985023F28543CC952AD2541B720FD0 Ref B: CO1EDGE1510 Ref C: 2021-12-15T17:44:30Z'
       x-xss-protection:
       - 1; mode=block
     status:
