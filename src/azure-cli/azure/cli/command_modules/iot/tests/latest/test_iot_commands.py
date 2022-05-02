@@ -60,23 +60,6 @@ class IoTHubTest(ScenarioTest):
                          self.check('properties.messagingEndpoints.fileNotifications.lockDurationAsIso8601', '0:00:15'),
                          self.check('properties.minTlsVersion', '1.2')])
 
-        # Test 'az iot hub show-connection-string'
-        conn_str_pattern = r'^HostName={0}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey='.format(
-            hub)
-        self.cmd('iot hub show-connection-string -n {0}'.format(hub), checks=[
-            self.check_pattern('connectionString', conn_str_pattern)
-        ])
-
-        self.cmd('iot hub show-connection-string -n {0} -g {1}'.format(hub, rg), checks=[
-            self.check('length(@)', 1),
-            self.check_pattern('connectionString', conn_str_pattern)
-        ])
-
-        self.cmd('iot hub show-connection-string -n {0} -g {1} --all'.format(hub, rg), checks=[
-            self.check('length(connectionString[*])', 5),
-            self.check_pattern('connectionString[0]', conn_str_pattern)
-        ])
-
         # Storage Connection String Pattern
         storage_cs_pattern = 'DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName='
         # Test 'az iot hub update'
@@ -174,14 +157,6 @@ class IoTHubTest(ScenarioTest):
         # Test 'az iot hub policy renew-key'
         policy = self.cmd('iot hub policy renew-key --hub-name {0} -n {1} --renew-key Primary'.format(hub, policy_name),
                           checks=[self.check('keyName', policy_name)]).get_output_in_json()
-
-        policy_name_conn_str_pattern = r'HostName={0}.azure-devices.net;SharedAccessKeyName={1};SharedAccessKey={2}'.format(
-            hub, policy_name, policy['primaryKey'])
-
-        # Test policy_name connection-string 'az iot hub show-connection-string'
-        self.cmd('iot hub show-connection-string -n {0} --policy-name {1}'.format(hub, policy_name), checks=[
-            self.check_pattern('connectionString', policy_name_conn_str_pattern)
-        ])
 
         # Test swap keys 'az iot hub policy renew-key'
         self.cmd('iot hub policy renew-key --hub-name {0} -n {1} --renew-key Swap'.format(hub, policy_name),
