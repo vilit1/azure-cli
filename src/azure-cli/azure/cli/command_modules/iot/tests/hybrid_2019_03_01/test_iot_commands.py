@@ -14,10 +14,10 @@ class IoTHubTest(ScenarioTest):
     @ResourceGroupPreparer(location='westus2')
     @StorageAccountPreparer()
     def test_iot_hub(self, resource_group, resource_group_location, storage_account):
-        hub = 'iot-hub-for-test-20190301'
+        hub = self.create_random_name(prefix='iothub20190301-', length=32)
         rg = resource_group
         location = resource_group_location
-        containerName = 'iothubcontainer20190301'
+        containerName = self.create_random_name(prefix='storeiothub20190301', length=32)
         storageConnectionString = self._get_azurestorage_connectionstring(rg, containerName, storage_account)
         ehConnectionString = self._get_eventhub_connectionstring(rg)
         subscription_id = self._get_current_subscription()
@@ -44,22 +44,22 @@ class IoTHubTest(ScenarioTest):
                          self.check('properties.messagingEndpoints.fileNotifications.ttlAsIso8601', '20:00:00'),
                          self.check('properties.messagingEndpoints.fileNotifications.maxDeliveryCount', '79')])
 
-        # Test 'az iot hub show-connection-string'
-        conn_str_pattern = r'^HostName={0}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey='.format(
-            hub)
-        self.cmd('iot hub show-connection-string -n {0}'.format(hub), checks=[
-            self.check_pattern('connectionString', conn_str_pattern)
-        ])
+        # # Test 'az iot hub show-connection-string'
+        # conn_str_pattern = r'^HostName={0}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey='.format(
+        #     hub)
+        # self.cmd('iot hub show-connection-string -n {0}'.format(hub), checks=[
+        #     self.check_pattern('connectionString', conn_str_pattern)
+        # ])
 
-        self.cmd('iot hub show-connection-string -n {0} -g {1}'.format(hub, rg), checks=[
-            self.check('length(@)', 1),
-            self.check_pattern('connectionString', conn_str_pattern)
-        ])
+        # self.cmd('iot hub show-connection-string -n {0} -g {1}'.format(hub, rg), checks=[
+        #     self.check('length(@)', 1),
+        #     self.check_pattern('connectionString', conn_str_pattern)
+        # ])
 
-        self.cmd('iot hub show-connection-string -n {0} -g {1} --all'.format(hub, rg), checks=[
-            self.check('length(connectionString[*])', 5),
-            self.check_pattern('connectionString[0]', conn_str_pattern)
-        ])
+        # self.cmd('iot hub show-connection-string -n {0} -g {1} --all'.format(hub, rg), checks=[
+        #     self.check('length(connectionString[*])', 5),
+        #     self.check_pattern('connectionString[0]', conn_str_pattern)
+        # ])
 
         # Storage Connection String Pattern
         storage_cs_pattern = 'DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName='
@@ -136,13 +136,13 @@ class IoTHubTest(ScenarioTest):
         policy = self.cmd('iot hub policy renew-key --hub-name {0} -n {1} --renew-key Primary'.format(hub, policy_name),
                           checks=[self.check('keyName', policy_name)]).get_output_in_json()
 
-        policy_name_conn_str_pattern = r'^HostName={0}.azure-devices.net;SharedAccessKeyName={1};SharedAccessKey={2}'.format(
-            hub, policy_name, policy['primaryKey'])
+        # policy_name_conn_str_pattern = r'^HostName={0}.azure-devices.net;SharedAccessKeyName={1};SharedAccessKey={2}'.format(
+        #     hub, policy_name, policy['primaryKey'])
 
-        # Test policy_name connection-string 'az iot hub show-connection-string'
-        self.cmd('iot hub show-connection-string -n {0} --policy-name {1}'.format(hub, policy_name), checks=[
-            self.check_pattern('connectionString', policy_name_conn_str_pattern)
-        ])
+        # # Test policy_name connection-string 'az iot hub show-connection-string'
+        # self.cmd('iot hub show-connection-string -n {0} --policy-name {1}'.format(hub, policy_name), checks=[
+        #     self.check_pattern('connectionString', policy_name_conn_str_pattern)
+        # ])
 
         # Test swap keys 'az iot hub policy renew-key'
         self.cmd('iot hub policy renew-key --hub-name {0} -n {1} --renew-key Swap'.format(hub, policy_name),
@@ -380,7 +380,7 @@ class IoTHubTest(ScenarioTest):
         self.cmd('iot hub delete -n {0}'.format(hub), checks=self.is_empty())
 
     def _get_eventhub_connectionstring(self, rg):
-        ehNamespace = 'ehNamespaceiothubfortest20190301'
+        ehNamespace = self.create_random_name(prefix='ehniothub20190301-', length=32)
         eventHub = 'eventHubiothubfortest'
         eventHubPolicy = 'eventHubPolicyiothubfortest'
         eventHubPolicyRight = 'Send'

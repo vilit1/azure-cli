@@ -23,30 +23,59 @@ def _create_test_cert(cert_file, key_file, subject, valid_days, serial_number):
             x509.NameAttribute(NameOID.COMMON_NAME, subject),
         ]
     )
-    cert = (
-        x509.CertificateBuilder()
-        .subject_name(subject_name)
-        .issuer_name(subject_name)
-        .public_key(key.public_key())
-        .serial_number(serial_number)
-        .not_valid_before(datetime.datetime.utcnow())
-        .not_valid_after(
-            datetime.datetime.utcnow() + datetime.timedelta(days=valid_days)
-        )
-        .sign(key, hashes.SHA256())
+    cert = x509.CertificateBuilder()
+    cert.subject_name(subject_name)
+    cert.serial_number(serial_number)
+    cert.not_valid_before(
+        datetime.datetime.utcnow() - datetime.timedelta(days=1)
     )
+    cert.not_valid_after(
+        datetime.datetime.utcnow() + datetime.timedelta(days=valid_days)
+    )
+    cert.add_extension(
+        x509.BasicConstraints(ca=True, path_length=1), critical=True,
+    )
+    cert.add_extension(
+        x509.SubjectKeyIdentifier.from_public_key(cert.public_key()), critical=False,
+    )
+    cert.add_extension(
+        x509.AuthorityKeyIdentifier.from_issuer_public_key(cert.public_key()), critical=False,
+    )
+    cert.issuer_name(subject_name)
+    cert.public_key(key.public_key())
+    cert.sign(key, hashes.SHA256())
+    # cert = (
+    #     x509.CertificateBuilder()
+    #     .subject_name(subject_name)
+    #     .issuer_name(subject_name)
+    #     .public_key(key.public_key())
+    #     .serial_number(serial_number)
+    #     .not_valid_before(
+    #         datetime.datetime.utcnow() - datetime.timedelta(days=1)
+    #     )
+    #     .not_valid_after(
+    #         datetime.datetime.utcnow() + datetime.timedelta(days=valid_days)
+    #     )
+    #     # .add_extension(
+    #     #     x509.BasicConstraints(ca=True, path_length=1), critical=True,
+    #     # )
+    #     # .add_extension(
+    #     #     x509.SubjectKeyIdentifier(digest=), critical=False,
+    #     # )
+    #     .sign(key, hashes.SHA256())
+    # )
 
     key_dump = key.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.TraditionalOpenSSL,
         encryption_algorithm=serialization.NoEncryption(),
-    ).decode("utf-8")
-    cert_dump = cert.public_bytes(serialization.Encoding.PEM).decode("utf-8")
+    ).decode("ascii")
+    cert_dump = cert.public_bytes(serialization.Encoding.PEM).decode("ascii")
 
-    with open(cert_file, "wt", encoding="utf-8") as f:
+    with open(cert_file, "wt") as f:
         f.write(cert_dump)
 
-    with open(key_file, "wt", encoding="utf-8") as f:
+    with open(key_file, "wt") as f:
         f.write(key_dump)
 
 
@@ -56,6 +85,8 @@ def _delete_test_cert(cert_file, key_file, verification_file):
         os.remove(key_file)
     if exists(verification_file):
         os.remove(verification_file)
+
+
 def _create_verification_cert(cert_file, key_file, verification_file, nonce, valid_days, serial_number):
     if exists(cert_file) and exists(key_file):
         # create a key pair
