@@ -30,6 +30,7 @@ class IoTHubTest(ScenarioTest):
         containerName = self.create_random_name(prefix='iothubcontainer1', length=24)
         storageConnectionString = self._get_azurestorage_connectionstring(rg, containerName, storage_account)
         ehConnectionString = self._get_eventhub_connectionstring(rg)
+        cosmosConnectionString = self._get_cosmosdb_connectionstring(rg)
         subscription_id = self.get_subscription_id()
 
         # Test 'az iot hub create'
@@ -253,7 +254,8 @@ class IoTHubTest(ScenarioTest):
                          self.check('eventHubs[0].name', endpoint_name),
                          self.check('length(serviceBusQueues[*])', 0),
                          self.check('length(serviceBusTopics[*])', 0),
-                         self.check('length(storageContainers[*])', 0)])
+                         self.check('length(storageContainers[*])', 0),
+                         self.check('length(cosmosDbSqlCollections[*])', 0)])
 
         # Test 'az iot hub routing-endpoint list'
         self.cmd('iot hub routing-endpoint list --hub-name {0} -g {1}'
@@ -287,6 +289,31 @@ class IoTHubTest(ScenarioTest):
         assert endpoint["storageContainers"][0]["batchFrequencyInSeconds"] == storage_batch_frequency
         assert endpoint["storageContainers"][0]["maxChunkSizeInBytes"] == 1048576 * storage_chunk_size
         assert endpoint["storageContainers"][0]["fileNameFormat"] == storage_file_name_format
+        assert len(endpoint['serviceBusQueues']) == 0
+        assert len(endpoint['serviceBusTopics']) == 0
+        assert len(endpoint['eventHubs']) == 1
+        assert len(endpoint['cosmosDbSqlCollections']) == 0
+
+        cosmos_endpoint_name = 'Cosmos1'
+        cosmos_endpoint_type = 'CosmosDbCollection'
+        collectionName = 'collection1'
+        databaseName = 'database1'
+        partitionKeyName = 'newpartition'
+        partitionKeyTemplate = '{iothub}-{deviceid}'
+        # Test 'az iot hub routing-endpoint create' with cosmos endpoint
+        endpoint = self.cmd('iot hub routing-endpoint create --hub-name {0} -g {1} -n {2} -t {3} -r {4} -s {5} '
+                            '-c "{6}" --cn {7} --dn {8} --pkn {9} --pkt {10}'
+                            .format(hub, rg, cosmos_endpoint_name, cosmos_endpoint_type, rg, subscription_id,
+                                    cosmosConnectionString, collectionName, databaseName,
+                                    partitionKeyName, partitionKeyTemplate)).get_output_in_json()
+
+        assert len(endpoint['cosmosDbSqlCollections']) == 1
+        assert endpoint["cosmosDbSqlCollections"][0]["collectionName"] == collectionName
+        assert endpoint["cosmosDbSqlCollections"][0]["name"] == cosmos_endpoint_name
+        assert endpoint["cosmosDbSqlCollections"][0]["databaseName"] == databaseName
+        assert endpoint["cosmosDbSqlCollections"][0]["partitionKeyName"] == partitionKeyName
+        assert endpoint["cosmosDbSqlCollections"][0]["partitionKeyTemplate"] == partitionKeyTemplate
+        assert len(endpoint['storageContainers']) == 1
         assert len(endpoint['serviceBusQueues']) == 0
         assert len(endpoint['serviceBusTopics']) == 0
         assert len(endpoint['eventHubs']) == 1
@@ -828,6 +855,28 @@ class IoTHubTest(ScenarioTest):
         assert storage_cs_pattern in updated_hub['properties']['storageEndpoints']['$default']['connectionString']
         assert updated_hub['properties']['storageEndpoints']['$default']['containerName'] == containerName
 
+    def _get_cosmosdb_connectionstring(self, rg):
+        cosmosAccount = self.create_random_name(prefix='cosmosfortest', length=32)
+        collection = self.create_random_name(prefix='collectionfortest', length=32)
+        database = self.create_random_name(prefix='databasefortest', length=32)
+        partition_key_path = 'test'
+
+        self.cmd('cosmosdb create --resource-group {0} --name {1}'
+                 .format(rg, cosmosAccount))
+
+        self.cmd('cosmosdb sql database create --resource-group {0} --account-name {1} --name {2}'
+                 .format(rg, cosmosAccount, database))
+
+        self.cmd('cosmosdb sql collection create --resource-group {0} --account-name {1} --database-name {2} --name {3} -p {4}'
+                 .format(rg, cosmosAccount, database, collection, partition_key_path))
+
+        output = self.cmd('cosmosdb keys --resource-group {0} --name {1} --type connection-strings'
+                          .format(rg, cosmosAccount))
+
+        for cs_object in output["connectionStrings"]:
+            if cs_object["description"] == "Primary SQL Connection String":
+                return cs_object["connectionString"]
+
     def _get_eventhub_connectionstring(self, rg):
         ehNamespace = self.create_random_name(prefix='ehNamespaceiothubfortest1', length=32)
         eventHub = self.create_random_name(prefix='eventHubiothubfortest', length=32)
@@ -855,6 +904,34 @@ class IoTHubTest(ScenarioTest):
         output = self.cmd('storage account show-connection-string --resource-group {0} --name {1}'
                           .format(rg, storage_name))
         return output.get_output_in_json()['connectionString']
+
+    def _create_eventhub_and_link_identity(self, rg, hub_object_id, identities=None):
+        cosmosAccount = self.create_random_name(prefix='cosmosfortest', length=32)
+        collection = self.create_random_name(prefix='collectionfortest', length=32)
+        database = self.create_random_name(prefix='databasefortest', length=32)
+        partition_key_path = 'test'
+        role = "Cosmos DB Account Reader Role"
+
+        cosmos = self.cmd('cosmosdb create --resource-group {0} --name {1}'
+                          .format(rg, cosmosAccount)).get_output_in_json()
+
+        self.cmd('cosmosdb sql database create --resource-group {0} --account-name {1} --name {2}'
+                 .format(rg, cosmosAccount, database))
+
+        self.cmd('cosmosdb sql collection create --resource-group {0} --account-name {1} --database-name {2} --name {3} -p {4}'
+                 .format(rg, cosmosAccount, database, collection, partition_key_path))
+
+        with mock.patch('azure.cli.command_modules.role.custom._gen_guid', side_effect=self.create_guid):
+            self.cmd('role assignment create --role "{0}" --assignee "{1}" --scope "{2}"'.format(role, hub_object_id, cosmos['id']))
+            if identities:
+                for identity in identities:
+                    identity_id = self.cmd('identity show --id "{}"'.format(identity)).get_output_in_json()['principalId']
+                    self.cmd('role assignment create --role "{0}" --assignee "{1}" --scope "{2}"'.format(role, identity_id, cosmos['id']))
+
+        # RBAC propogation
+        if self.is_live:
+            from time import sleep
+            sleep(30)
 
     def _create_eventhub_and_link_identity(self, rg, hub_object_id, identities=None):
         ehNamespace = self.create_random_name(prefix='ehNamespaceiothubfortest1', length=32)

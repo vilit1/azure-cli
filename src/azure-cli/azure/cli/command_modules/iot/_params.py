@@ -284,18 +284,20 @@ def load_arguments(self, _):  # pylint: disable=too-many-statements
         c.argument('endpoint_name', options_list=['--endpoint-name', '--name', '-n'],
                    help='Name of the Routing Endpoint.')
         c.argument('endpoint_resource_group', options_list=['--endpoint-resource-group', '--erg', '-r'],
-                   help='Resource group of the Endpoint resoure.')
+                   help='Resource group of the Endpoint resoure. If not provided, the IoT Hub resource group will be used.')
         c.argument('endpoint_subscription_id', options_list=['--endpoint-subscription-id', '-s'],
-                   help='SubscriptionId of the Endpoint resource.')
+                   help='SubscriptionId of the Endpoint resource. If not provided, the IoT Hub subscription will be used.')
         c.argument('connection_string', options_list=['--connection-string', '-c'],
                    help='Connection string of the Routing Endpoint.')
         c.argument('container_name', options_list=['--container-name', '--container'],
-                   help='Name of the storage container.')
+                   help='Name of the storage container.',
+                   arg_group='Storage Container')
         c.argument('endpoint_type', arg_type=get_enum_type(EndpointType),
                    options_list=['--endpoint-type', '--type', '-t'], help='Type of the Routing Endpoint.')
         c.argument('encoding', options_list=['--encoding'], arg_type=get_enum_type(EncodingFormat),
                    help='Encoding format for the container. The default is AVRO. '
-                        'Note that this field is applicable only for blob container endpoints.')
+                        'Note that this field is applicable only for blob container endpoints.',
+                   arg_group='Storage Container')
         c.argument('endpoint_uri', options_list=['--endpoint-uri'],
                    help='The uri of the endpoint resource.')
         c.argument('entity_path', options_list=['--entity-path'],
@@ -304,13 +306,34 @@ def load_arguments(self, _):  # pylint: disable=too-many-statements
     with self.argument_context('iot hub routing-endpoint create') as c:
         c.argument('batch_frequency', options_list=['--batch-frequency', '-b'], type=int,
                    help='Request batch frequency in seconds. The maximum amount of time that can elapse before data is'
-                        ' written to a blob, between 60 and 720 seconds.')
+                        ' written to a blob, between 60 and 720 seconds.',
+                   arg_group='Storage Container')
         c.argument('chunk_size_window', options_list=['--chunk-size', '-w'], type=int,
-                   help='Request chunk size in megabytes(MB). The maximum size of blobs, between 10 and 500 MB.')
+                   help='Request chunk size in megabytes(MB). The maximum size of blobs, between 10 and 500 MB.',
+                   arg_group='Storage Container')
         c.argument('file_name_format', options_list=['--file-name-format', '--ff'],
                    help='File name format for the blob. The file name format must contain {iothub},'
                         ' {partition}, {YYYY}, {MM}, {DD}, {HH} and {mm} fields. All parameters are'
-                        ' mandatory but can be reordered with or without delimiters.')
+                        ' mandatory but can be reordered with or without delimiters.',
+                   arg_group='Storage Container')
+        c.argument('database_name', options_list=['--database-name', '--dn'],
+                   help='The name of the cosmos DB database in the cosmos DB account. Required for Cosmos DB SQL Collection Endpoints.',
+                   arg_group='Cosmos DB SQL Collection')
+        c.argument('collection_name', options_list=['--collection-name', '--cn'],
+                   help='The name of the cosmos DB sql collection in the cosmos DB database. Required for Cosmos DB SQL Collection Endpoints.',
+                   arg_group='Cosmos DB SQL Collection')
+        c.argument('primary_key', options_list=['--primary-key', '--pk'],
+                   help='The primary key of the cosmos DB account.',
+                   arg_group='Cosmos DB SQL Collection')
+        c.argument('secondary_key', options_list=['--secondary-key', '--sk'],
+                   help='The secondary key of the cosmos DB account.',
+                   arg_group='Cosmos DB SQL Collection')
+        c.argument('partition_key_name', options_list=['--partition-key-name', '--pkn'],
+                   help='The name of the partition key associated with this cosmos DB sql collection if one exists.',
+                   arg_group='Cosmos DB SQL Collection')
+        c.argument('partition_key_template', options_list=['--partition-key-template', '--pkt'],
+                   help='The template for generating a synthetic partition key value for use with this cosmos DB sql collection. The template must include at least one of the following placeholders: {iothub}, {deviceid}, {DD}, {MM}, and {YYYY}. Any one placeholder may be specified at most once, but order and non-placeholder components are arbitrary. If partition key name is provided, partition key template defaults to {deviceid}-{YYYY}-{MM}',
+                   arg_group='Cosmos DB SQL Collection')
         c.argument('authentication_type', options_list=['--auth-type'], arg_type=get_enum_type(AuthenticationType),
                    help='Authentication type for the endpoint. The default is keyBased.')
         c.argument('identity', help='Use a system-assigned or user-assigned managed identity for endpoint '

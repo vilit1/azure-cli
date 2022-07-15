@@ -44,6 +44,7 @@ from azure.mgmt.iothub.models import (IotHubSku,
                                       RoutingEventHubProperties,
                                       RoutingServiceBusQueueEndpointProperties,
                                       RoutingServiceBusTopicEndpointProperties,
+                                      RoutingCosmosDBSqlApiProperties,
                                       RoutingStorageContainerProperties,
                                       RouteProperties,
                                       RoutingMessage,
@@ -69,7 +70,7 @@ from azure.cli.command_modules.iot._constants import SYSTEM_ASSIGNED_IDENTITY
 from azure.cli.command_modules.iot.shared import EndpointType, EncodingFormat, RenewKeyType, AuthenticationType, IdentityType
 from azure.cli.command_modules.iot._client_factory import resource_service_factory
 from azure.cli.command_modules.iot._client_factory import iot_hub_service_factory
-from azure.cli.command_modules.iot._utils import open_certificate, generate_key
+from azure.cli.command_modules.iot._utils import open_certificate, generate_key, parse_cosmos_db_connection_string
 
 
 logger = get_logger(__name__)
@@ -943,16 +944,23 @@ def validate_authentication_type_input(endpoint_type, connection_string=None, au
 
 
 def iot_hub_routing_endpoint_create(cmd, client, hub_name, endpoint_name, endpoint_type,
-                                    endpoint_resource_group, endpoint_subscription_id,
+                                    endpoint_resource_group=None, endpoint_subscription_id=None,
                                     connection_string=None, container_name=None, encoding=None,
                                     resource_group_name=None, batch_frequency=300, chunk_size_window=300,
                                     file_name_format='{iothub}/{partition}/{YYYY}/{MM}/{DD}/{HH}/{mm}',
-                                    authentication_type=None, endpoint_uri=None, entity_path=None,
+                                    authentication_type=None, endpoint_uri=None, entity_path=None, collection_name=None,
+                                    database_name=None, primary_key=None, secondary_key=None,
+                                    partition_key_name=None, partition_key_template=None,
                                     identity=None):
     resource_group_name = _ensure_hub_resource_group_name(client, resource_group_name, hub_name)
     hub = iot_hub_get(cmd, client, hub_name, resource_group_name)
     if identity and authentication_type != AuthenticationType.IdentityBased.value:
         raise ArgumentUsageError("In order to use an identity for authentication, you must select --auth-type as 'identityBased'")
+
+    if not endpoint_resource_group:
+        endpoint_resource_group = hub.additional_properties['resourcegroup']
+    if not endpoint_subscription_id:
+        endpoint_subscription_id = hub.additional_properties['subscriptionid']
 
     if EndpointType.EventHub.value == endpoint_type.lower():
         hub.properties.routing.endpoints.event_hubs.append(
@@ -976,7 +984,6 @@ def iot_hub_routing_endpoint_create(cmd, client, hub_name, endpoint_name, endpoi
                 resource_group=endpoint_resource_group,
                 authentication_type=authentication_type,
                 endpoint_uri=endpoint_uri,
-                entity_path=entity_path,
                 identity=ManagedIdentity(user_assigned_identity=identity) if identity and identity not in [IdentityType.none.value, SYSTEM_ASSIGNED_IDENTITY] else None
             )
         )
@@ -985,6 +992,62 @@ def iot_hub_routing_endpoint_create(cmd, client, hub_name, endpoint_name, endpoi
             RoutingServiceBusTopicEndpointProperties(
                 connection_string=connection_string,
                 name=endpoint_name,
+                subscription_id=endpoint_subscription_id,
+                resource_group=endpoint_resource_group,
+                authentication_type=authentication_type,
+                endpoint_uri=endpoint_uri,
+                entity_path=entity_path,
+                identity=ManagedIdentity(user_assigned_identity=identity) if identity and identity not in [IdentityType.none.value, SYSTEM_ASSIGNED_IDENTITY] else None
+            )
+        )
+    elif EndpointType.CosmosDBCollection.value == endpoint_type.lower():
+        if connection_string:
+            # parse out key from connection string
+            if not primary_key and not secondary_key:
+                parsed_cs = parse_cosmos_db_connection_string(connection_string)
+                primary_key = parsed_cs["AccountKey"]
+                secondary_key = parsed_cs["AccountKey"]
+            # parse out endpoint uri from connection string
+            if not endpoint_uri:
+                endpoint_uri = parsed_cs["AccountEndpoint"]
+        if not primary_key and not secondary_key:
+            raise CLIError("Primary key via --primary-key, secondary key via --secondary-key, or connection string via --connection-string is required.")
+        if primary_key and not secondary_key:
+            secondary_key = primary_key
+        if secondary_key and not primary_key:
+            primary_key = secondary_key
+        if not endpoint_uri:
+            raise CLIError("Endpoint uri via --endpoint-uri or connection string via --connection-string is required.")
+        if not database_name:
+            raise CLIError("Database name via --database-name is required.")
+        if not collection_name:
+            raise CLIError("Collection name via --collection-name is required.")
+        if partition_key_name and not partition_key_template:
+            partition_key_template = '{deviceid}-{YYYY}-{MM}'
+        print(RoutingCosmosDBSqlApiProperties(
+                name=endpoint_name,
+                database_name=database_name,
+                collection_name=collection_name,
+                primary_key=primary_key,
+                secondary_key=secondary_key,
+                partition_key_name=partition_key_name,
+                partition_key_template=partition_key_template,
+                subscription_id=endpoint_subscription_id,
+                resource_group=endpoint_resource_group,
+                authentication_type=authentication_type,
+                endpoint_uri=endpoint_uri,
+                entity_path=entity_path,
+                identity=ManagedIdentity(user_assigned_identity=identity) if identity and identity not in [IdentityType.none.value, SYSTEM_ASSIGNED_IDENTITY] else None
+            ).__dict__)
+        hub.properties.routing.endpoints.cosmos_db_sql_collections.append(
+            RoutingCosmosDBSqlApiProperties(
+                name=endpoint_name,
+                database_name=database_name,
+                collection_name=collection_name,
+                primary_key=primary_key,
+                secondary_key=secondary_key,
+                partition_key_name=partition_key_name,
+                partition_key_template=partition_key_template,
                 subscription_id=endpoint_subscription_id,
                 resource_group=endpoint_resource_group,
                 authentication_type=authentication_type,
@@ -1029,6 +1092,8 @@ def iot_hub_routing_endpoint_list(cmd, client, hub_name, endpoint_type=None, res
         return hub.properties.routing.endpoints.service_bus_topics
     if EndpointType.AzureStorageContainer.value == endpoint_type.lower():
         return hub.properties.routing.endpoints.storage_containers
+    if EndpointType.CosmosDBCollection.value == endpoint_type.lower():
+        return hub.properties.routing.endpoints.cosmos_db_sql_collections
 
 
 def iot_hub_routing_endpoint_show(cmd, client, hub_name, endpoint_name, resource_group_name=None):
@@ -1046,6 +1111,9 @@ def iot_hub_routing_endpoint_show(cmd, client, hub_name, endpoint_name, resource
     for storage_container in hub.properties.routing.endpoints.storage_containers:
         if storage_container.name.lower() == endpoint_name.lower():
             return storage_container
+    for cosmos_db_collection in hub.properties.routing.endpoints.cosmos_db_sql_collections:
+        if cosmos_db_collection.name.lower() == endpoint_name.lower():
+            return cosmos_db_collection
     raise CLIError("No endpoint found.")
 
 
@@ -1297,6 +1365,8 @@ def _delete_routing_endpoints(endpoint_name, endpoint_type, endpoints):
             endpoints.storage_containers = []
         elif EndpointType.EventHub.value == endpoint_type.lower():
             endpoints.event_hubs = []
+        elif EndpointType.CosmosDBCollection.value == endpoint_type.lower():
+            endpoints.cosmos_db_sql_collections = []
 
     if endpoint_name:
         if any(e.name.lower() == endpoint_name.lower() for e in endpoints.service_bus_queues):
@@ -1311,12 +1381,16 @@ def _delete_routing_endpoints(endpoint_name, endpoint_type, endpoints):
         elif any(e.name.lower() == endpoint_name.lower() for e in endpoints.event_hubs):
             eh_endpoints = [e for e in endpoints.event_hubs if e.name.lower() != endpoint_name.lower()]
             endpoints.event_hubs = eh_endpoints
+        elif any(e.name.lower() == endpoint_name.lower() for e in endpoints.cosmos_db_sql_collections):
+            ch_endpoints = [e for e in endpoints.cosmos_db_sql_collections if e.name.lower() != endpoint_name.lower()]
+            endpoints.cosmos_db_sql_collections = ch_endpoints
 
     if not endpoint_type and not endpoint_name:
         endpoints.service_bus_queues = []
         endpoints.service_bus_topics = []
         endpoints.storage_containers = []
         endpoints.event_hubs = []
+        endpoints.cosmos_db_sql_collections = []
 
     return endpoints
 

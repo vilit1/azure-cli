@@ -116,3 +116,38 @@ def _safe_decode(cert_bytes):
         except UnicodeDecodeError:
             return None
     return None
+
+
+def parse_cosmos_db_connection_string(cs):
+    validate = ["AccountEndpoint", "AccountKey"]
+    return _parse_connection_string(cs, validate, "Cosmos DB Collection")
+
+
+def _parse_connection_string(cs, validate=None, cstring_type="entity"):
+    decomposed = _validate_key_value_pairs(cs)
+    decomposed_lower = dict((k.lower(), v) for k, v in decomposed.items())
+    if validate:
+        for k in validate:
+            if not any([decomposed.get(k), decomposed_lower.get(k.lower())]):
+                raise ValueError(
+                    "{} connection string has missing property: {}".format(
+                        cstring_type, k
+                    )
+                )
+    return decomposed
+
+
+def _validate_key_value_pairs(string):
+    """
+    Funtion to validate key-value pairs in the format: a=b;c=d
+
+    Args:
+        string (str): semicolon delimited string of key/value pairs.
+
+    Returns (dict, None): a dictionary of key value pairs.
+    """
+    result = None
+    if string:
+        kv_list = [x for x in string.split(";") if "=" in x]  # key-value pairs
+        result = dict(x.split("=", 1) for x in kv_list)
+    return result

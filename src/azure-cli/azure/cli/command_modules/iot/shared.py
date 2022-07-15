@@ -20,6 +20,7 @@ class EndpointType(Enum):
     ServiceBusQueue = 'servicebusqueue'
     ServiceBusTopic = 'servicebustopic'
     AzureStorageContainer = 'azurestoragecontainer'
+    CosmosDBCollection = 'cosmosdbcollection'
 
 
 # pylint: disable=too-few-public-methods
